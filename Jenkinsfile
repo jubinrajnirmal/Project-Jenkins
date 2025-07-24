@@ -23,7 +23,7 @@ pipeline {
         stage('Jubin - Push Image to Dockerhub') {
             steps {
                 script {
-                    sh "docker tag ${IMAGE}:${TAG} ${IMAGE}:${TAG}"
+                    sh "docker tag ${IMAGE}:${TAG} ${IMAGE}:latest"
                     sh "docker push ${IMAGE}:${TAG}"
                     sh "docker push ${IMAGE}:latest"
                 }                
