@@ -2,13 +2,14 @@ pipeline {
     agent any
     environment {
         CREDENTIALS = 'dockerhub'
-        IMAGE = 'jubinraj/jenkins-project:latest'
+        IMAGE = 'jubinraj/jenkins-project'
+        TAG = "v${BUILD_NUMBER}"
     }
     stages {
         stage('Jubin - Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t $IMAGE .'
+                    sh "docker build -t ${IMAGE}:${TAG} ."
                 }
             }
         }
@@ -21,9 +22,12 @@ pipeline {
         }
         stage('Jubin - Push Image to Dockerhub') {
             steps {
-                sh 'docker push $IMAGE'
+                script {
+                    sh "docker tag ${IMAGE}:${TAG} ${IMAGE}:${TAG}"
+                    sh "docker push ${IMAGE}:${TAG}"
+                    sh "docker push ${IMAGE}:latest"
+                }                
             }
         }
     }
-    
 }
