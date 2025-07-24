@@ -10,4 +10,4 @@ def display_date_time_and_version():
     print(f"Version: {version}")
 
 if __name__ == "__main__":
-    display_date_time_and_version()
+    display_date_time_and_version() 

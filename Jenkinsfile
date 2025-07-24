@@ -15,7 +15,7 @@ pipeline {
         stage('Jubin - Login to Dockerhub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: CREDENTIALS, passwordVariable: 'pwd', usernameVariable: 'user')]) {
-                    sh 'echo $pwd | docker login -u $user --password-stdin'
+                    sh "echo ${pwd} | docker login -u ${user} --password-stdin"
                 }
             }
         }
