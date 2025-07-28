@@ -1,14 +1,23 @@
+from flask import Flask
 from datetime import datetime
 
-if __name__ == "__main__":
+app = Flask(__name__)
+
+@app.route('/')
+
+def index():
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    print(f"""     [◉_◉ ]   ⚙️ Beep boop...
+    return f"""<pre>
+    [◉_◉ ]   ⚙️ Beep boop...
      ( || )   Deploying: POSITIVE VIBES
       /__\\    >> INITIATING: HAVE A GOOD DAY <<
 
-     ⌨️ Uptime: 100%    |   Logs: Clean
-     ☕ Coffee: Full    |   Threats: Contained
+    ⌨️ Uptime: 100%    |   Logs: Clean
+    ☕ Coffee: Full    |   Threats: Contained
 
-     Current Date and Time: {current_time}
-""")
+    Current Date and Time: {current_time}
+    </pre>"""
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
